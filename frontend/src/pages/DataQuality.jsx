@@ -76,45 +76,14 @@ function DataQuality() {
   };
 
   return (
-    <div className="bg-[#05070a] text-white h-screen flex overflow-hidden antialiased selection:bg-purple-500/30 selection:text-white font-sans relative">
-      
+    <>
       {/* Background Gradient */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#13112a] via-[#0b0f19] to-[#05070a]"></div>
         <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-cyan-900/10 blur-[120px]"></div>
       </div>
 
-      {/* NavigationDrawer (Desktop) */}
-      <aside className="hidden lg:flex flex-col pt-12 bg-black/40 backdrop-blur-3xl h-full w-60 fixed left-0 top-0 border-r border-white/5 z-40 shadow-2xl">
-        <div className="px-6 mb-8">
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 tracking-tight drop-shadow-[0_0_15px_rgba(0,240,255,0.5)]">VizGen</h1>
-        </div>
-        <div className="flex flex-col gap-2 px-3 flex-1">
-          <Link to="/dashboard" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/dashboard' ? 'bg-gradient-to-r from-purple-500/20 to-transparent text-purple-400 border-l-2 border-purple-500 shadow-[inset_4px_0_20px_rgba(139,92,246,0.15)]' : 'text-gray-400 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined text-[20px]">dashboard</span>
-            <span className="font-medium tracking-wide text-sm">Dashboard</span>
-          </Link>
-          <Link to="/analytics" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/analytics' ? 'bg-gradient-to-r from-purple-500/20 to-transparent text-purple-400 border-l-2 border-purple-500 shadow-[inset_4px_0_20px_rgba(139,92,246,0.15)]' : 'text-gray-400 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined text-[20px]">bar_chart</span>
-            <span className="font-medium tracking-wide text-sm">Analytics</span>
-          </Link>
-          <Link to="/upload" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/upload' || currentPath === '/data_quality' ? 'bg-gradient-to-r from-purple-500/20 to-transparent text-purple-400 border-l-2 border-purple-500 shadow-[inset_4px_0_20px_rgba(139,92,246,0.15)]' : 'text-gray-400 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined text-[20px]">database</span>
-            <span className="font-medium tracking-wide text-sm">Data Sources</span>
-          </Link>
-          <Link to="/reports" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/reports' ? 'bg-gradient-to-r from-purple-500/20 to-transparent text-purple-400 border-l-2 border-purple-500' : 'text-gray-400 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined text-[20px]">description</span>
-            <span className="font-medium tracking-wide text-sm">Reports</span>
-          </Link>
-          <Link to="/settings" className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/settings' ? 'bg-gradient-to-r from-purple-500/20 to-transparent text-purple-400 border-l-2 border-purple-500' : 'text-gray-400 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined text-[20px]">settings</span>
-            <span className="font-medium tracking-wide text-sm">Settings</span>
-          </Link>
-        </div>
-      </aside>
-
-      {/* Main Content Area */}
-      <main className="flex-1 lg:ml-60 flex flex-col h-screen overflow-hidden relative z-10 p-6 lg:p-8">
+      <div className="flex-1 flex flex-col h-full min-h-0 overflow-hidden relative z-10 p-6 lg:p-8">
         
         {/* Header Section */}
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/5 pb-4 mb-6 shrink-0">
@@ -297,7 +266,7 @@ function DataQuality() {
           </div>
 
         </div>
-      </main>
+      </div>
       
       <style dangerouslySetInnerHTML={{__html: `
         .custom-scrollbar::-webkit-scrollbar {
@@ -315,7 +284,7 @@ function DataQuality() {
           background: rgba(255,255,255,0.2);
         }
       `}} />
-    </div>
+    </>
   )
 }
 

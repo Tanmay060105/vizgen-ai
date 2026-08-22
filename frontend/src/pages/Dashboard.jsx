@@ -34,51 +34,7 @@ function Dashboard() {
   if (error) return <div className="min-h-screen bg-[#05070a] flex flex-col items-center justify-center text-white font-body-md"><span className="material-symbols-outlined text-4xl text-[#FF007C] mb-4">error</span><p>No telemetry data found. Please initialize a data source.</p><Link to="/upload" className="mt-6 px-6 py-2.5 bg-[#B900FF] hover:bg-[#8B5CF6] transition-colors rounded-xl font-bold">Go to Upload</Link></div>;
   
   return (
-    <div className="antialiased min-h-screen flex flex-col md:flex-row overflow-x-hidden bg-transparent text-white selection:bg-[#00F0FF]/30 selection:text-white font-body-md relative">
-      
-      {/* NavigationDrawer (Sidebar - Desktop) */}
-      <aside className="hidden md:flex flex-col gap-unit pt-16 bg-[#000000]/40 backdrop-blur-3xl h-full w-60 fixed left-0 top-0 border-r border-white/5 z-40 shadow-2xl">
-        <div className="px-gutter mb-8">
-          <h1 className="font-headline-lg text-headline-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#00F0FF] to-[#B900FF] tracking-tight drop-shadow-[0_0_15px_rgba(0,240,255,0.5)]">VizGen</h1>
-        </div>
-        <nav className="flex-1 px-4 space-y-2">
-          {/* Active Tab: Dashboard */}
-          <Link to="/dashboard" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/dashboard' ? 'bg-gradient-to-r from-[#00F0FF]/20 to-transparent text-[#00F0FF] border-l-2 border-[#00F0FF] shadow-[inset_4px_0_20px_rgba(0,240,255,0.15)]' : 'text-white/60 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/dashboard' ? { fontVariationSettings: "'FILL' 1", textShadow: "0 0 15px rgba(0,240,255,0.8)" } : {}}>dashboard</span>
-            <span className="font-body-md text-body-md font-medium tracking-wide">Dashboard</span>
-          </Link>
-          <Link to="/analytics" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/analytics' ? 'bg-gradient-to-r from-[#00F0FF]/20 to-transparent text-[#00F0FF] border-l-2 border-[#00F0FF]' : 'text-white/60 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/analytics' ? { fontVariationSettings: "'FILL' 1" } : {}}>bar_chart</span>
-            <span className="font-body-md text-body-md font-medium tracking-wide">Analytics</span>
-          </Link>
-          <Link to="/upload" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/upload' ? 'bg-gradient-to-r from-[#00F0FF]/20 to-transparent text-[#00F0FF] border-l-2 border-[#00F0FF]' : 'text-white/60 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/upload' ? { fontVariationSettings: "'FILL' 1" } : {}}>database</span>
-            <span className="font-body-md text-body-md font-medium tracking-wide">Data Sources</span>
-          </Link>
-          <Link to="/reports" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/reports' ? 'bg-gradient-to-r from-[#00F0FF]/20 to-transparent text-[#00F0FF] border-l-2 border-[#00F0FF]' : 'text-white/60 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/reports' ? { fontVariationSettings: "'FILL' 1" } : {}}>description</span>
-            <span className="font-body-md text-body-md font-medium tracking-wide">Reports</span>
-          </Link>
-          <Link to="/settings" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-300 ease-in-out ${currentPath === '/settings' ? 'bg-gradient-to-r from-[#00F0FF]/20 to-transparent text-[#00F0FF] border-l-2 border-[#00F0FF]' : 'text-white/60 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/settings' ? { fontVariationSettings: "'FILL' 1" } : {}}>settings</span>
-            <span className="font-body-md text-body-md font-medium tracking-wide">Settings</span>
-          </Link>
-        </nav>
-        <div className="p-4 border-t border-white/5 mt-auto bg-black/40 backdrop-blur-xl">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#00F0FF]/20 to-[#B900FF]/20 border border-[#00F0FF]/40 flex items-center justify-center overflow-hidden cursor-pointer shadow-[0_0_15px_rgba(0,240,255,0.3)] hover:shadow-[0_0_25px_rgba(0,240,255,0.6)] transition-all duration-300 active:scale-95">
-              <span className="material-symbols-outlined text-[#00F0FF] text-sm">person</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-body-sm text-body-sm font-medium text-white">Alex Carter</span>
-              <span className="text-[10px] text-[#00F0FF] uppercase tracking-[0.15em] font-semibold">Data Scientist</span>
-            </div>
-          </div>
-        </div>
-      </aside>
-
-      {/* Main Content Canvas */}
-      <main className="flex-1 md:ml-60 flex flex-col min-h-screen relative z-10 bg-transparent">
+    <>
         {/* TopAppBar */}
         <header className="flex justify-between items-center h-20 px-gutter w-full sticky top-0 z-50 bg-[#000000]/20 backdrop-blur-2xl border-b border-white/5 shadow-lg">
           {/* Mobile Brand */}
@@ -228,29 +184,7 @@ function Dashboard() {
 
           </div>
         </div>
-      </main>
-
-      {/* BottomNavBar (Mobile Nav Shell) */}
-      <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 pb-safe lg:hidden bg-[#000000]/80 rounded-t-[32px] border-t border-white/10 backdrop-blur-3xl shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
-        <Link to="/dashboard" className={`flex flex-col items-center justify-center transition-all duration-300 w-full h-full font-label-caps text-[10px] tracking-widest font-bold ${currentPath === '/dashboard' ? 'text-[#00F0FF]' : 'text-white/30'}`}>
-          <span className="material-symbols-outlined mb-1.5 text-2xl" style={currentPath === '/dashboard' ? { fontVariationSettings: "'FILL' 1", textShadow: "0 0 15px rgba(0,240,255,0.8)" } : {}}>home</span>
-          HOME
-        </Link>
-        <Link to="/analytics" className={`flex flex-col items-center justify-center transition-all duration-300 w-full h-full font-label-caps text-[10px] tracking-widest font-bold ${currentPath === '/analytics' ? 'text-[#00F0FF]' : 'text-white/30'}`}>
-          <span className="material-symbols-outlined mb-1.5 text-2xl" style={currentPath === '/analytics' ? { fontVariationSettings: "'FILL' 1", textShadow: "0 0 15px rgba(0,240,255,0.8)" } : {}}>query_stats</span>
-          CHARTS
-        </Link>
-        <Link to="/upload" className={`flex flex-col items-center justify-center transition-all duration-300 w-full h-full font-label-caps text-[10px] tracking-widest font-bold ${currentPath === '/upload' ? 'text-[#00F0FF] relative' : 'text-white/30'}`}>
-          {currentPath === '/upload' && <div className="absolute top-0 w-16 h-1.5 bg-gradient-to-r from-transparent via-[#00F0FF] to-transparent shadow-[0_2px_15px_#00F0FF]"></div>}
-          <span className="material-symbols-outlined mb-1.5 text-2xl" style={currentPath === '/upload' ? { fontVariationSettings: "'FILL' 1", textShadow: "0 0 15px rgba(0,240,255,0.8)" } : {}}>cloud_upload</span>
-          UPLOAD
-        </Link>
-        <Link to="/profile" className={`flex flex-col items-center justify-center transition-all duration-300 w-full h-full font-label-caps text-[10px] tracking-widest font-bold ${currentPath === '/profile' ? 'text-[#00F0FF]' : 'text-white/30'}`}>
-          <span className="material-symbols-outlined mb-1.5 text-2xl" style={currentPath === '/profile' ? { fontVariationSettings: "'FILL' 1", textShadow: "0 0 15px rgba(0,240,255,0.8)" } : {}}>account_circle</span>
-          PROFILE
-        </Link>
-      </nav>
-    </div>
+    </>
   );
 }
 

@@ -159,11 +159,16 @@ def get_chart_recommendations(df: pd.DataFrame, metadata: dict) -> list:
         num1 = numeric_cols[0]
         num2 = numeric_cols[1]
         
-        df_sample = df.sample(min(300, len(df))) if len(df) > 300 else df # Reduced sample size for less clutter
+        df_sample = df.sample(min(300, len(df))) if len(df) > 300 else df.copy() # Reduced sample size for less clutter
         
         if len(numeric_cols) >= 3:
             num3 = numeric_cols[2]
-            fig = px.scatter(df_sample, x=num1['name'], y=num2['name'], size=num3['name'], hover_name=num3['name'], size_max=25)
+            # Plotly size parameter cannot handle NaNs or negative values. 
+            # We create a temporary safe column.
+            safe_size_col = f"{num3['name']}_safe_size"
+            df_sample[safe_size_col] = df_sample[num3['name']].fillna(0).clip(lower=0)
+            
+            fig = px.scatter(df_sample, x=num1['name'], y=num2['name'], size=safe_size_col, hover_name=num3['name'], size_max=25)
             chart_type = "bubble"
             title = f"Multi-variate Analysis"
         else:

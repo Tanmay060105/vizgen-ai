@@ -70,53 +70,7 @@ function UploadData() {
   };
 
   return (
-    <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container antialiased">
-      {/* TopAppBar */}
-      <header className="flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/10">
-        <div className="flex items-center gap-3">
-          <span className="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform">insights</span>
-          <span className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary tracking-tight">VizGen</span>
-        </div>
-        <div className="flex items-center">
-          <div className="w-8 h-8 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center overflow-hidden cursor-pointer hover:bg-white/5 transition-colors duration-150 active:scale-95">
-            <span className="material-symbols-outlined text-on-surface-variant text-sm">person</span>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Layout */}
-      <div className="flex flex-1 w-full max-w-[1440px] mx-auto relative">
-        {/* NavigationDrawer (Desktop) */}
-        <nav className="hidden lg:flex flex-col gap-unit pt-16 bg-surface-container-low h-full w-60 fixed left-0 top-0 border-r border-white/10 z-40">
-          <div className="px-6 mb-8 pt-4">
-            <span className="font-headline-lg text-headline-lg font-bold text-primary">VizGen AI</span>
-          </div>
-          <div className="flex flex-col gap-2 px-3">
-          <Link to="/dashboard" className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-150 ease-in-out ${currentPath === '/dashboard' ? 'bg-primary/10 text-primary border-r-2 border-primary' : 'text-on-surface-variant hover:text-on-surface hover:bg-white/5'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/dashboard' ? { fontVariationSettings: "'FILL' 1" } : {}}>dashboard</span>
-            <span className="font-title-md text-title-md font-medium">Dashboard</span>
-          </Link>
-          <Link to="/analytics" className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-150 ease-in-out ${currentPath === '/analytics' ? 'bg-primary/10 text-primary border-r-2 border-primary' : 'text-on-surface-variant hover:text-on-surface hover:bg-white/5'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/analytics' ? { fontVariationSettings: "'FILL' 1" } : {}}>bar_chart</span>
-            <span className="font-title-md text-title-md font-medium">Analytics</span>
-          </Link>
-          <Link to="/upload" className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-150 ease-in-out ${currentPath === '/upload' ? 'bg-primary/10 text-primary border-r-2 border-primary' : 'text-on-surface-variant hover:text-on-surface hover:bg-white/5'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/upload' ? { fontVariationSettings: "'FILL' 1" } : {}}>database</span>
-            <span className="font-title-md text-title-md font-medium">Data Sources</span>
-          </Link>
-          <Link to="/reports" className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-150 ease-in-out ${currentPath === '/reports' ? 'bg-primary/10 text-primary border-r-2 border-primary' : 'text-on-surface-variant hover:text-on-surface hover:bg-white/5'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/reports' ? { fontVariationSettings: "'FILL' 1" } : {}}>description</span>
-            <span className="font-title-md text-title-md font-medium">Reports</span>
-          </Link>
-          <Link to="/settings" className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-150 ease-in-out ${currentPath === '/settings' ? 'bg-primary/10 text-primary border-r-2 border-primary' : 'text-on-surface-variant hover:text-on-surface hover:bg-white/5'}`}>
-            <span className="material-symbols-outlined" style={currentPath === '/settings' ? { fontVariationSettings: "'FILL' 1" } : {}}>settings</span>
-            <span className="font-title-md text-title-md font-medium">Settings</span>
-          </Link>
-          </div>
-        </nav>
-
-        {/* Main Content Area */}
-        <main className="flex-1 lg:ml-60 p-margin-mobile md:p-margin-desktop min-h-screen relative overflow-hidden flex flex-col">
+    <>
           {/* Atmospheric Gradient Background */}
           <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
             <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-primary/20 blur-[120px]"></div>
@@ -193,30 +147,7 @@ function UploadData() {
               <span className="font-label-caps text-label-caps tracking-widest">End-to-end encrypted storage</span>
             </div>
           </div>
-        </main>
-      </div>
-
-      {/* BottomNavBar (Mobile) */}
-            <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 pb-safe lg:hidden bg-surface-container-highest rounded-t-xl border-t border-white/10 backdrop-blur-lg shadow-2xl shadow-primary/20">
-        <Link to="/dashboard" className={`flex flex-col items-center justify-center transition-all duration-150 w-full h-full font-label-caps text-label-caps ${currentPath === '/dashboard' ? 'text-primary' : 'text-on-surface-variant opacity-60'}`}>
-          <span className="material-symbols-outlined mb-1" style={currentPath === '/dashboard' ? { fontVariationSettings: "'FILL' 1" } : {}}>home</span>
-          Home
-        </Link>
-        <Link to="/analytics" className={`flex flex-col items-center justify-center transition-all duration-150 w-full h-full font-label-caps text-label-caps ${currentPath === '/analytics' ? 'text-primary' : 'text-on-surface-variant opacity-60'}`}>
-          <span className="material-symbols-outlined mb-1" style={currentPath === '/analytics' ? { fontVariationSettings: "'FILL' 1" } : {}}>query_stats</span>
-          Charts
-        </Link>
-        <Link to="/upload" className={`flex flex-col items-center justify-center transition-all duration-150 w-full h-full font-label-caps text-label-caps ${currentPath === '/upload' ? 'text-primary relative' : 'text-on-surface-variant opacity-60'}`}>
-          {currentPath === '/upload' && <div className="absolute top-0 w-8 h-1 bg-primary rounded-b-full"></div>}
-          <span className="material-symbols-outlined mb-1" style={currentPath === '/upload' ? { fontVariationSettings: "'FILL' 1" } : {}}>cloud_upload</span>
-          Upload
-        </Link>
-        <Link to="/profile" className={`flex flex-col items-center justify-center transition-all duration-150 w-full h-full font-label-caps text-label-caps ${currentPath === '/profile' ? 'text-primary' : 'text-on-surface-variant opacity-60'}`}>
-          <span className="material-symbols-outlined mb-1" style={currentPath === '/profile' ? { fontVariationSettings: "'FILL' 1" } : {}}>account_circle</span>
-          Profile
-        </Link>
-      </nav>
-    </div>
+    </>
   );
 }
 

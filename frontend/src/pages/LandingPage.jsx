@@ -1,8 +1,23 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
+import LoginModal from '../components/LoginModal';
+import { useAuth } from '../context/AuthContext';
 
 function LandingPage() {
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [searchParams] = useSearchParams();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (searchParams.get('login') === 'true') {
+      setIsLoginModalOpen(true);
+    }
+  }, [searchParams]);
+
   return (
     <div className="bg-background text-on-background font-body-md min-h-screen flex flex-col antialiased">
+      <LoginModal isOpen={isLoginModalOpen} onClose={() => setIsLoginModalOpen(false)} />
       {/* TopAppBar */}
       <header className="flex justify-between items-center h-16 px-gutter w-full sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-white/10 text-primary font-title-md text-title-md">
         <div className="flex items-center gap-2 cursor-pointer active:scale-95 transition-transform hover:bg-white/5 transition-colors duration-150 p-2 rounded-lg">
@@ -15,8 +30,18 @@ function LandingPage() {
             <a className="text-on-surface-variant hover:text-primary transition-colors" href="#">Docs</a>
             <a className="text-on-surface-variant hover:text-primary transition-colors" href="#">Pricing</a>
           </nav>
-          <div className="cursor-pointer active:scale-95 transition-transform hover:bg-white/5 transition-colors duration-150 p-2 rounded-full border border-white/10 bg-surface-container-low flex items-center justify-center h-8 w-8">
-            <span className="material-symbols-outlined text-[18px]">account_circle</span>
+          <div 
+            onClick={() => user ? navigate('/dashboard') : setIsLoginModalOpen(true)}
+            className="cursor-pointer active:scale-95 transition-transform hover:bg-white/5 transition-colors duration-150 p-2 rounded-full border border-white/10 bg-surface-container-low flex items-center justify-center h-8 w-8 overflow-hidden"
+            title={user ? 'Go to Dashboard' : 'Sign In'}
+          >
+            {user ? (
+               <div className="w-full h-full bg-gradient-to-br from-primary to-[#B900FF] flex items-center justify-center text-white font-bold text-xs uppercase">
+                 {user.email ? user.email.charAt(0) : 'U'}
+               </div>
+            ) : (
+               <span className="material-symbols-outlined text-[18px]">account_circle</span>
+            )}
           </div>
         </div>
       </header>
