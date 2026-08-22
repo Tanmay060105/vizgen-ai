@@ -1,0 +1,9 @@
+id,order_date,customer_name,country,revenue,discount_pct,status
+1,2023-01-01,Alice,USA,100.50,0.05,completed
+2,2023-01-02,Bob,UK,250.00,0.10,completed
+3,2023-01-03,Charlie,USA,50.00,0.00,pending
+4,2023-01-03,David,Canada,150.00,,completed
+5,2023-01-04,Eve,UK,300.00,0.15,cancelled
+6,2023-01-05,,USA,120.00,0.05,completed
+6,2023-01-05,,USA,120.00,0.05,completed
+8,invalid_date,Frank,Germany,9999.99,0.00,completed

@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    body {
+        min-height: max(884px, 100dvh);
+        background: linear-gradient(135deg, #0b0f19 0%, #1a0b2e 50%, #0B132B 100%);
+        background-attachment: fixed;
+        @apply text-on-background min-h-screen antialiased;
+    }
+}
+
+@layer components {
+    .glow-effect {
+        box-shadow: 0 0 20px 0 rgba(139, 92, 246, 0.2);
+    }
+
+    .gauge-svg {
+        transform: rotate(-90deg);
+    }
+
+    .gauge-circle-bg {
+        stroke: rgba(255, 255, 255, 0.08);
+        fill: none;
+        stroke-width: 8;
+    }
+
+    .gauge-circle-progress {
+        stroke: #8B5CF6;
+        fill: none;
+        stroke-width: 8;
+        stroke-dasharray: 283; /* 2 * pi * r (r=45) */
+        stroke-dashoffset: 283;
+        transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        stroke-linecap: round;
+        filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.5));
+    }
+}
