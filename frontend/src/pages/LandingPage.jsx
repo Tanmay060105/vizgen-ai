@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import LoginModal from '../components/LoginModal';
 import { useAuth } from '../context/AuthContext';
+import { motion } from 'framer-motion';
 
 function LandingPage() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -64,7 +65,12 @@ function LandingPage() {
             </div>
           </div>
           
-          <div className="relative z-10 text-center max-w-4xl flex flex-col items-center gap-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="relative z-10 text-center max-w-4xl flex flex-col items-center gap-8"
+          >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-label-caps uppercase tracking-wider backdrop-blur-md">
               <span className="material-symbols-outlined text-[14px]">auto_awesome</span>
               <span>AI-Powered Insights</span>
@@ -89,11 +95,17 @@ function LandingPage() {
                 See a live demo
               </button>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Stats Counter */}
-        <section className="w-full max-w-container-max px-gutter py-12 border-y border-white/5 bg-surface/50 backdrop-blur-sm z-10 relative">
+        <motion.section 
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.8, type: "spring", bounce: 0.5 }}
+          className="w-full max-w-container-max px-gutter py-12 border-y border-white/5 bg-surface/50 backdrop-blur-sm z-10 relative"
+        >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col gap-1">
               <span className="font-headline-lg text-headline-lg text-primary">10M+</span>
@@ -112,12 +124,18 @@ function LandingPage() {
               <span className="text-label-caps text-on-surface-variant uppercase">Render Time</span>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Features Showcase */}
         <section className="w-full max-w-container-max px-gutter py-24 flex flex-col gap-32 z-10 relative">
           {/* Feature 1 */}
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col lg:flex-row gap-16 items-center"
+          >
             <div className="flex-1 flex flex-col gap-4">
               <h2 className="font-headline-lg text-headline-lg text-on-surface">Every chart comes with a reason</h2>
               <p className="text-on-surface-variant font-body-md text-[16px]">Stop wondering which visualization to use. VizGen's engine selects the optimal chart type based on data distribution and intent, providing clear, natural-language explanations for its choice.</p>
@@ -138,10 +156,16 @@ function LandingPage() {
                 <strong className="text-on-surface">Why a Bar Chart?</strong> The dataset contains categorical variables with significant variance. A bar chart clearly illustrates the primary peak in 'Category C', making the comparative differences immediately obvious.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Feature 2 */}
-          <div className="flex flex-col lg:flex-row-reverse gap-16 items-center">
+          <motion.div 
+            initial={{ opacity: 0, x: 100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col lg:flex-row-reverse gap-16 items-center"
+          >
             <div className="flex-1 flex flex-col gap-4">
               <h2 className="font-headline-lg text-headline-lg text-on-surface">Know your data quality instantly</h2>
               <p className="text-on-surface-variant font-body-md text-[16px]">Don't build insights on bad foundations. Our pre-flight check assesses null values, outliers, and formatting inconsistencies before a single pixel is drawn.</p>
@@ -168,11 +192,17 @@ function LandingPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </section>
 
         {/* Gallery / Bento Grid */}
-        <section className="w-full max-w-container-max px-gutter py-16 flex flex-col gap-8 z-10 relative">
+        <motion.section 
+          initial={{ opacity: 0, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: "-100px" }}
+          transition={{ duration: 1, type: "spring", bounce: 0.3 }}
+          className="w-full max-w-container-max px-gutter py-16 flex flex-col gap-8 z-10 relative"
+        >
           <div className="text-center mb-8">
             <h2 className="font-headline-lg text-headline-lg text-on-surface">Visualizations for every scenario</h2>
           </div>
@@ -213,7 +243,7 @@ function LandingPage() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
       </main>
 
       <footer className="mt-auto border-t border-white/5 bg-surface-container-lowest py-8 px-gutter flex flex-col items-center justify-center gap-4 z-10 relative">

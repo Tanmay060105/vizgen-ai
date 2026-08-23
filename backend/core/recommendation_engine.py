@@ -52,12 +52,20 @@ def apply_stitch_theme(fig, chart_type, color_idx=0):
             mode='lines',
             line_shape='spline'
         )
-    elif chart_type == "treemap":
-        fig.update_traces(
-            marker=dict(line=dict(width=0)),
-            textinfo="label+value",
-            textfont=dict(size=14, color="#FFFFFF", family="Inter, sans-serif")
+    elif chart_type == "choropleth":
+        fig.update_geos(
+            showcountries=True, countrycolor="rgba(255,255,255,0.2)",
+            showcoastlines=True, coastlinecolor="rgba(255,255,255,0.2)",
+            showland=True, landcolor="rgba(255,255,255,0.05)",
+            showocean=True, oceancolor="rgba(0,0,0,0)",
+            bgcolor='rgba(0,0,0,0)',
+            projection_type="natural earth",
+            visible=False
         )
+        fig.update_layout(coloraxis_showscale=False, geo=dict(bgcolor='rgba(0,0,0,0)'))
+    elif chart_type == "bar_heatmap":
+        fig.update_traces(marker_line_width=0)
+        fig.update_layout(coloraxis_showscale=False)
     elif chart_type == "bar":
         fig.update_traces(
             marker_color=primary_color, 
@@ -128,18 +136,41 @@ def get_chart_recommendations(df: pd.DataFrame, metadata: dict) -> list:
             df_agg = df.groupby(cat_col['name'])[num_col['name']].sum().reset_index()
             df_agg = df_agg.sort_values(by=num_col['name'], ascending=False)
             
-            # Treemap is highly visual and modern
-            df_agg_tree = df_agg.head(8).copy() # Reduced to 8 for cleaner look
-            df_agg_tree['root'] = 'Total'
-            fig_tree = px.treemap(df_agg_tree, path=['root', cat_col['name']], values=num_col['name'])
+            is_geo = any(term in cat_col['name'].lower() for term in ['country', 'nation', 'region', 'state', 'location'])
+            
+            if is_geo:
+                fig_heatmap = px.choropleth(
+                    df_agg, 
+                    locations=cat_col['name'], 
+                    locationmode='country names',
+                    color=num_col['name'],
+                    color_continuous_scale=["#FF007C", "#8B5CF6", "#00F0FF"]
+                )
+                chart_type = "choropleth"
+                title = f"Global Heatmap: {num_col['name']} by {cat_col['name']}"
+                explanation = "Geographic heatmaps provide an intuitive global overview of data concentrations."
+            else:
+                df_top = df_agg.head(10).sort_values(by=num_col['name'], ascending=True)
+                fig_heatmap = px.bar(
+                    df_top, 
+                    y=cat_col['name'], 
+                    x=num_col['name'],
+                    color=num_col['name'],
+                    orientation='h',
+                    color_continuous_scale=["#1A0510", "#B900FF", "#00F0FF"]
+                )
+                chart_type = "bar_heatmap"
+                title = f"Intensity Heatmap: {num_col['name']} by {cat_col['name']}"
+                explanation = "A sorted intensity profile clearly highlights top categories."
+                
             treemap_charts.append({
-                "chart_type": "treemap",
-                "title": f"Heatmap: {num_col['name']} by {cat_col['name']}",
+                "chart_type": chart_type,
+                "title": title,
                 "x_axis": cat_col['name'],
                 "y_axis": num_col['name'],
                 "score": 10 if cat_col['unique_count'] < 15 else 7,
-                "explanation": f"Treemaps are highly visual for comparing proportional compositions.",
-                "fig": fig_tree
+                "explanation": explanation,
+                "fig": fig_heatmap
             })
             
             if cat_col['unique_count'] <= 6:
